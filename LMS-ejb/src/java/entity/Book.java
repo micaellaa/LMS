@@ -8,12 +8,14 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -29,10 +31,24 @@ public class Book implements Serializable {
     
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private ArrayList<LendAndReturn> lendAndReturns;
-        
+    
+    @Column(nullable = false)
+    @Size(max = 200)
     private String title;
+    @Column(nullable = false, unique = true)
     private String isbn;
+    @Column(nullable = false)
+    @Size(max = 120)
     private String author;
+
+    public Book() {
+    }
+    
+    public Book(String title, String isbn, String author) {
+        this.title = title;
+        this.isbn = isbn;
+        this.author = author;
+    }
 
     public Long getBookId() {
         return bookId;

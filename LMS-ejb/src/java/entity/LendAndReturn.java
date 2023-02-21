@@ -6,7 +6,9 @@
 package entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -32,17 +37,29 @@ public class LendAndReturn implements Serializable {
     // private Long bookId;
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
-    private Long memberId = this.member.getMemberId();
     
     @ManyToOne(fetch = FetchType.LAZY)
     private Book book;
-    private Long bookId = this.book.getBookId();
     
     @Temporal(TemporalType.DATE)
     private Date lendDate;
     @Temporal(TemporalType.DATE)
     private Date returnDate;
-    private double finalAmount;
+    
+    @Column(nullable = false, precision = 11, scale = 2)
+    @NotNull
+    @DecimalMin("0.00")
+    @Digits(integer = 9, fraction = 2)
+    private BigDecimal finalAmount;
+
+    public LendAndReturn() {
+    }
+    
+    public LendAndReturn(Date lendDate, Date returnDate, BigDecimal finalAmount) {
+        this.lendDate = lendDate;
+        this.returnDate = returnDate;
+        this.finalAmount = finalAmount;
+    }
 
     public Long getLendId() {
         return lendId;

@@ -8,12 +8,15 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,13 +33,36 @@ public class Member implements Serializable {
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private ArrayList<LendAndReturn> lendAndReturns;
     
+    @Column(nullable = false, length = 32)
     private String firstName;
+    @Column(nullable = false, length = 32)
     private String lastName;
+    @Column(nullable = false)
     private char gender;
+    @Column(nullable = false)
+    @Min(value = 0L, message = "Age must be positive value.")
     private int age;
+    @Column(nullable = false, unique = true)
     private String identityNo;
+    @Column
+    @Size(min = 6, max = 20)
     private String phone;
+    @Column
+    @Size(max = 200)
     private String address;
+
+    public Member() {
+    }
+    
+    public Member(String firstName, String lastName, char gender, int age, String identityNo, String phone, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.identityNo = identityNo;
+        this.phone = phone;
+        this.address = address;
+    }
 
     public Long getMemberId() {
         return memberId;
