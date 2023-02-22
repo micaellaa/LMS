@@ -1,0 +1,134 @@
+
+#top {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+    color: #37314a;
+    font-family:  Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 300;
+    font-size: 14px;
+    text-decoration : none;
+    margin: 0px 0px 0px 0px;
+}
+
+#navigationChoicesContainer {
+    min-width: 75%;
+    horizontal-align: middle;
+    align-content: center;
+}
+
+#navigationChoices {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: justify;
+    background-color: rgba(0, 0, 0, 0);
+    color: #37314a;
+    padding: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+#navigationUserContainer {
+    min-width: 25%;
+    align-content: center;
+}
+
+#verticalLine{
+    width:2px;
+    height:30px;
+    background:#e38755;
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+    padding: 5px;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#lmsLogo {
+  color: #37314a; 
+  font-family:  Monaco, Gill Sans, Arial, Verdana, Trebucha MS, Tahoma;
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+#navigationChoices a:link, #navigationChoices a:visited {
+  color: #D7D5D3;
+  font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
+  font-weight: 300;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+#navigationChoices a:link:hover, #navigationChoices a:visited:hover  {
+  color: #37314a; 
+  font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+  font-weight: 300;
+  font-size: 14px;
+  text-decoration : none;
+}
+
+#navigationChoices a:link:after, #navigationChoices a:visited:after {
+  color: #D7D5D3;
+  font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
+  font-weight: 300;
+  font-size: 14px;
+  text-decoration: none;
+    
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0087ca;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+#navigationChoices a:link:hover:after, #navigationChoices a:visited:hover:after{
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
+
+
