@@ -81,8 +81,18 @@ public class Book implements Serializable {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    public ArrayList<LendAndReturn> getLendAndReturns() {
+        return lendAndReturns;
+    }
+
+    public void setLendAndReturns(ArrayList<LendAndReturn> lendAndReturns) {
+        this.lendAndReturns = lendAndReturns;
+    }
     
-    
+    public void addLendAndReturn(LendAndReturn lendAndReturn) {
+        this.lendAndReturns.add(lendAndReturn);
+    }
 
     @Override
     public int hashCode() {

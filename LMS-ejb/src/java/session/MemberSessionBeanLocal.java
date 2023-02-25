@@ -6,8 +6,10 @@
 package session;
 
 import entity.Member;
+import exception.BookNotFoundException;
 import exception.InputDataValidationException;
 import exception.MemberExistsException;
+import exception.MemberNotFoundException;
 import exception.UnknownPersistenceException;
 import javax.ejb.Local;
 
@@ -17,6 +19,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface MemberSessionBeanLocal {
-    
+    public Member retrieveMemberByMemberId(Long memberId) throws MemberNotFoundException, BookNotFoundException ;
     public Member createNewMember(Member member) throws MemberExistsException, UnknownPersistenceException, InputDataValidationException;
 }

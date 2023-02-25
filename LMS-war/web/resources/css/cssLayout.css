@@ -11,11 +11,12 @@
     font-weight: 300;
     font-size: 14px;
     text-decoration : none;
+    padding: 5px;
     margin: 0px 0px 0px 0px;
 }
 
 #navigationChoicesContainer {
-    min-width: 75%;
+    min-width: 70%;
     horizontal-align: middle;
     align-content: center;
 }
@@ -31,15 +32,17 @@
     margin: 0px 0px 0px 0px;
 }
 
-#navigationUserContainer {
-    min-width: 25%;
+#navigationUser {
+    min-width: 20%;
     align-content: center;
 }
 
 #verticalLine{
-    width:2px;
-    height:30px;
-    background:#e38755;
+    width:3px;
+    height:10px;
+    background: #e38755;
+    background-color: #e38755;
+    color: #e38755
 }
 
 #bottom {
@@ -50,83 +53,196 @@
 }
 
 #left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     float: left;
     background-color: #ece3a5;
     padding: 5px;
     width: 150px;
 }
 
+#sidebar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    float: left;
+    padding: 20px 5px 5px 5px;
+    width: 210px;
+    height: 70%;
+    background: white;
+    border-radius: 15px;
+}
+
+#sidebarChoices {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    background-color: rgba(0, 0, 0, 0);
+    color: #37314a;
+    padding: 10px 5px 5px 5px;
+    margin: 20px 0px 0px 0px;
+}
+
 #right {
+    position: relative;
     float: right;
     background-color: #ece3a5;
     padding: 5px;
     width: 150px;
 }
 
+#content {
+    flex-direction: row;
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+    padding: 40px 5px 5px 5px;
+    min-height: 50%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
 .center_content {
     position: relative;
-    background-color: #dddddd;
+    background-color: rgba(0, 0, 0, 0);
     padding: 5px;
 }
 
 .left_content {
-    background-color: #dddddd;
+    background-color: rgba(0, 0, 0, 0);
     padding: 5px;
     margin-left: 170px;
 }
 
 .right_content {
-    background-color: #dddddd;
+    background-color: rgba(0, 0, 0, 0);
     padding: 5px;
     margin: 0px 170px 0px 170px;
 }
 
+#inputLabel {
+    color: #37314a; 
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 300;
+    font-size: 14px;
+    padding: 8px 0px 0px 0px;
+}
+
 #lmsLogo {
-  color: #37314a; 
-  font-family:  Monaco, Gill Sans, Arial, Verdana, Trebucha MS, Tahoma;
-  font-weight: bold;
-  font-size: 18px;
-  text-decoration: none;
+    color: #37314a; 
+    font-family: Arial, Monaco, Gill Sans, Verdana, Trebucha MS, Tahoma;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
 }
 
 #navigationChoices a:link, #navigationChoices a:visited {
-  color: #D7D5D3;
-  font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
-  font-weight: 300;
-  font-size: 14px;
-  text-decoration: none;
+    color: #D7D5D3;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
+    font-weight: 300;
+    font-size: 15px;
+    text-decoration: none;
 }
 
 #navigationChoices a:link:hover, #navigationChoices a:visited:hover  {
-  color: #37314a; 
-  font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
-  font-weight: 300;
-  font-size: 14px;
-  text-decoration : none;
+    color: #37314a; 
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 300;
+    font-size: 15px;
+    text-decoration : none;
 }
 
 #navigationChoices a:link:after, #navigationChoices a:visited:after {
-  color: #D7D5D3;
-  font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
-  font-weight: 300;
-  font-size: 14px;
-  text-decoration: none;
-    
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #0087ca;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+    color: #D7D5D3;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
+    font-weight: 300;
+    font-size: 15px;
+    text-decoration: none;
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
 }
 
 #navigationChoices a:link:hover:after, #navigationChoices a:visited:hover:after{
-  transform: scaleX(1);
-  transform-origin: bottom left;
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+#sidebarChoices a:link {
+    color: #37314a;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
+    font-weight: 300;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 16px;
+}
+
+#sidebarChoices a:link:hover {
+    color: #37314a; 
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 300;
+    font-size: 16px;
+    text-decoration : none;
+    background-color: #E1EFF3;
+    background: #E1EFF3;
+    padding: 8px;
+    border-radius: 16px;
+}
+
+#formContainer {
+    background: white;
+    align-self: center;
+    padding: 50px 20px 50px 20px;
+    width: 60%;
+    border-radius: 15px;
+}
+
+#inputText {
+    color: #37314a; 
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration : none;
+    background: #f7f1ea;
+    height: 20px;
+    width: 20%;
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin: 8px;
+}
+
+#sidebarChoices a:visited {
+    color: #37314a; 
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 300;
+    font-size: 16px;
+    text-decoration : none;
+    padding: 8px;
+    border: 1px solid #37314a;
+    border-radius: 16px;
+
+}
+
+#sidebarChoices a:visited:hover  {
+    color: #37314a; 
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 300;
+    font-size: 16px;
+    text-decoration : none;
+    padding: 8px;
+    border: 1px solid #37314a;
+    border-radius: 16px;
 }
 
 

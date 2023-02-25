@@ -2,18 +2,62 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./layout/managementPage.xhtml">
+                template="./layout/managementPage.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:define name="top">
-        top
+    <ui:define name="title">
+        Manage Members
     </ui:define>
 
-    <ui:define name="left">
-        left
+    <ui:define name="sidebar">
+        <div id="sidebarChoices">
+            <a href="manageMembers.xhtml">Register a new Member</a>
+            <a href="findMember.xhtml">Find a Member</a>
+        </div>
     </ui:define>
 
     <ui:define name="content">
-        content
+        <div id="formContainer">
+            <h:form>
+                
+                <!--<h:outputLabel for="firstName">First Name: </h:outputLabel> -->
+                <div id="inputLabel">First name</div>
+                <h:inputText id="firstName" value="#{memberManagedBean.firstName}" /><br/>
+
+                <!--<h:outputLabel for="lastName">Last Name: </h:outputLabel> -->
+                <div id="inputLabel">Last name</div>
+                <h:inputText id="lastName" value="#{memberManagedBean.lastName}" /><br/>
+
+                <!--Gender: -->
+                <div id="inputLabel">Gender</div>
+                <h:selectOneMenu value="#{memberManagedBean.gender}">
+                    <f:selectItem itemValue="1" itemLabel="Female" /> <br/>
+                    <f:selectItem itemValue="2" itemLabel="Male" /> <br/>
+                    <f:selectItem itemValue="3" itemLabel="Others" /> 
+                </h:selectOneMenu><br/>
+
+                <!--<h:outputLabel for="age">Age: </h:outputLabel>--> 
+                <div id="inputLabel">Age</div>
+                <h:inputText id="age" value="#{memberManagedBean.age}" /><br/>
+
+                <!--<h:outputLabel for="identityNo">Identity Number: </h:outputLabel>--> 
+                <div id="inputLabel">Identity number</div>
+                <h:inputText id="identityNo" value="#{memberManagedBean.identityNo}" /><br/>
+
+                <!--<h:outputLabel for="phone">Contact Number: </h:outputLabel>--> 
+                <div id="inputLabel">Phone number</div>
+                <h:inputText id="phone" value="#{memberManagedBean.phone}" /><br/>
+
+                <!--<h:outputLabel for="address">Address: </h:outputLabel>--> 
+                <div id="inputLabel">Address</div>
+                <h:inputText id="address" value="#{memberManagedBean.address}" /><br/>
+                <h:commandButton value="Submit"
+                                 actionListener="#{memberManagedBean.createNewMember}" 
+                                 action="manageMembers.xhtml?faces-redirect=true"
+                                 /> 
+            </h:form>
+        </div>
     </ui:define>
 
     <ui:define name="bottom">

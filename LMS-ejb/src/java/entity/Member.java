@@ -79,6 +79,10 @@ public class Member implements Serializable {
     public void setLendAndReturns(ArrayList<LendAndReturn> lendAndReturns) {
         this.lendAndReturns = lendAndReturns;
     }
+    
+    public void addLendAndReturn(LendAndReturn lendAndReturn) {
+        this.lendAndReturns.add(lendAndReturn);
+    }
 
     public String getFirstName() {
         return firstName;

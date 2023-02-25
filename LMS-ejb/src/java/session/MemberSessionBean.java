@@ -9,6 +9,7 @@ import exception.UnknownPersistenceException;
 import entity.Member;
 import exception.InputDataValidationException;
 import exception.MemberExistsException;
+import exception.MemberNotFoundException;
 import java.util.Set;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -37,6 +38,17 @@ public class MemberSessionBean implements MemberSessionBeanLocal {
     public MemberSessionBean() {
         validatorFactory = Validation.buildDefaultValidatorFactory();
         validator = validatorFactory.getValidator();
+    }
+    
+    @Override
+    public Member retrieveMemberByMemberId(Long memberId) throws MemberNotFoundException {
+        Member member = em.find(Member.class, memberId);
+
+        if (member != null) {
+            return member;
+        } else {
+            throw new MemberNotFoundException("Member ID " + memberId + " cannot be found.");
+        }
     }
     
     @Override

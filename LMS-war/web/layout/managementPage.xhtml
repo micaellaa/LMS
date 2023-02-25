@@ -8,17 +8,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="css/default.css"/>
         <h:outputStylesheet name="css/cssLayout.css"/>
-        <title>Management</title>
+        <title><ui:insert name="title">LMS Management</ui:insert></title>
     </h:head>
 
     <h:body>
-
         <div id="top">
-            <ui:insert name="top">Top</ui:insert>
+            <img src="./assets/lmslogo.png" width="30" height="30" hspace="30"/>
+            <div id="lmsLogo">Library <br /> Management <br /> System</div>
+            <img src="./assets/orangebluegradientstrip.jpg" width="2" height="30" hspace="30"/>
+            <div id="navigationChoicesContainer"> 
+                <div id="navigationChoices">
+                    <a href="index.xhtml">Home</a>
+                    <a href="manageMembers.xhtml">Manage Members</a>
+                    <a href="manageBooks.xhtml">Manage Books</a>
+                    <a href="manageLendAndReturns.xhtml">Manage Lend and Returns</a>
+                </div>
+            </div>
+            <div id="navigationUser">usernamehere</div>
         </div>
         <div>
-            <div id="left">
-                <ui:insert name="left">Left</ui:insert>
+            <div id="sidebar">
+                <ui:insert name="sidebar">Sidebar</ui:insert>
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">Content</ui:insert>
@@ -31,4 +41,3 @@
     </h:body>
 
 </html>
-<a href="default.xhtml"></a>
