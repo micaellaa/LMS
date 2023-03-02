@@ -7,6 +7,7 @@ package managedBean;
 
 import entity.Book;
 import exception.BookExistsException;
+import exception.BookNotFoundException;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -27,11 +28,20 @@ public class bookManagedBean {
     private String title;
     private String isbn;
     private String author;
+    private Book book;
 
     /**
      * Creates a new instance of bookManagedBean
      */
     public bookManagedBean() {
+    }
+    
+    public void retrieveBookByIsbn(ActionEvent evt) {
+        try {
+            book = bookSessionLocal.retrieveBookByIsbn(isbn);
+        } catch(BookNotFoundException ex) {
+            //
+        }
     }
     
     public void addNewBook(ActionEvent evt) {

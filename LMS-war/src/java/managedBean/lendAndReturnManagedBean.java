@@ -29,8 +29,8 @@ public class lendAndReturnManagedBean {
     @EJB
     private LendAndReturnSessionBeanLocal lendAndReturnSessionLocal;
 
-    private Member member;
-    private Book book;
+    private Long memberId;
+    private Long bookId;
     private Date lendDate;
     private Date returnDate;
     private BigDecimal finalAmount;
@@ -48,7 +48,7 @@ public class lendAndReturnManagedBean {
         lend.setFinalAmount(finalAmount);
         
         try {
-            lendAndReturnSessionLocal.createNewLendAndReturn(lend, member.getMemberId(), book.getBookId());
+            lendAndReturnSessionLocal.createNewLendAndReturn(lend, memberId, bookId);
         } catch (MemberNotFoundException ex) {
             //
         } catch (BookNotFoundException ex) {
@@ -64,20 +64,20 @@ public class lendAndReturnManagedBean {
         this.lendAndReturnSessionLocal = lendAndReturnSessionLocal;
     }
 
-    public Member getMember() {
-        return member;
+    public Long getMemberId() {
+        return memberId;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
-    public Book getBook() {
-        return book;
+    public Long getBookId() {
+        return bookId;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
     }
 
     public Date getLendDate() {

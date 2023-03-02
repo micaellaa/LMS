@@ -11,7 +11,7 @@
     font-weight: 300;
     font-size: 14px;
     text-decoration : none;
-    padding: 5px;
+    padding: 5px 5px 20px 5px;
     margin: 0px 0px 0px 0px;
 }
 
@@ -66,9 +66,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
+    align-items: center; /*centers it on the horizontal axis*/
+    /*justify-content: center;*/
     float: left;
     padding: 20px 5px 5px 5px;
     width: 210px;
@@ -139,12 +138,12 @@
     text-decoration: none;
 }
 
-#navigationChoices a:link, #navigationChoices a:visited {
-    color: #D7D5D3;
+#navigationChoices a:link, #navigationChoices a:visited  {
+    color: #ABABC3;
     font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
     font-weight: 300;
     font-size: 15px;
-    text-decoration: none;
+    text-decoration: bold;
 }
 
 #navigationChoices a:link:hover, #navigationChoices a:visited:hover  {
@@ -156,11 +155,11 @@
 }
 
 #navigationChoices a:link:after, #navigationChoices a:visited:after {
-    color: #D7D5D3;
+    color: #ABABC3;
     font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
     font-weight: 300;
     font-size: 15px;
-    text-decoration: none;
+    text-decoration: bold;
     content: '';
     position: absolute;
     width: 100%;
@@ -243,6 +242,15 @@
     padding: 8px;
     border: 1px solid #37314a;
     border-radius: 16px;
+}
+
+#sidebarTitle a {
+    color: #37314a; 
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration : bold;
+    padding: 8px;
 }
 
 

@@ -100,7 +100,7 @@ public class StaffSessionBean implements StaffSessionBeanLocal {
     }
 
     @Override
-    public Staff staffLogin(String username, String password) throws InvalidLoginCredentialException {
+    public Staff staffLogin(String username, String password) throws StaffNotFoundException, InvalidLoginCredentialException {
         try {
             Staff staff = retrieveStaffByUsername(username);
 
@@ -111,7 +111,7 @@ public class StaffSessionBean implements StaffSessionBeanLocal {
                 throw new InvalidLoginCredentialException("Username does not exist or invalid password!");
             }
         } catch (StaffNotFoundException ex) {
-            throw new InvalidLoginCredentialException("Username does not exist or invalid password!");
+            throw new StaffNotFoundException("Username does not exist or invalid password!");
         } 
     }
     
