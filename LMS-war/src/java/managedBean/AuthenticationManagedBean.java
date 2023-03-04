@@ -62,7 +62,7 @@ public class AuthenticationManagedBean implements Serializable {
         }
         if (staff != null) {
             staffId = staff.getStaffId();
-            return "/index.xhtml?faces-redirect=true";
+            return "/secret/index.xhtml?faces-redirect=true";
         } else {
             userName = null;
             password = null;
