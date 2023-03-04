@@ -14,21 +14,21 @@
     <h:body>
 
         <div id="top">
-            <img src="./assets/lmslogo.png" width="30" height="30" hspace="30"/>
+            <img src="../assets/lmslogo.png" width="30" height="30" hspace="30"/>
             <div id="lmsLogo">Library <br /> Management <br /> System</div>
-            <img src="./assets/orangestrip.jpg" width="2" height="30" hspace="30"/>
+            <img src="../assets/orangestrip.jpg" width="2" height="30" hspace="30"/>
             <div id="navigationChoicesContainer"> 
                 <div id="navigationChoices">
                     <a href="index.xhtml">Home</a>
-                    <a href="secret/manageMembers.xhtml">Manage Members</a>
-                    <a href="secret/manageBooks.xhtml">Manage Books</a>
-                    <a href="secret/manageLendAndReturns.xhtml">Manage Lend and Returns</a>
+                    <a href="manageMembers.xhtml">Manage Members</a>
+                    <a href="manageBooks.xhtml">Manage Books</a>
+                    <a href="manageLendAndReturns.xhtml">Manage Lend and Returns</a>
                 </div>
             </div>
             <div id="navigationUser">
                 
                 <div class="dropdown">
-                    <img src="./assets/icons/user.png" width="16" height="16" hspace="10"/>
+                    <img src="../assets/icons/user.png" width="16" height="16" hspace="10"/>
                 #{authenticationManagedBean.userName}
                     <div class="dropdown-content">
                         <a href="login.xhtml">Log out</a>
