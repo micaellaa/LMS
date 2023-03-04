@@ -24,7 +24,12 @@
                     <a href="manageLendAndReturns.xhtml">Manage Lend and Returns</a>
                 </div>
             </div>
-            <div id="navigationUser">#{authenticationManagedBean.userName}</div>
+            <div id="navigationUser" onclick>
+                <img src="./assets/icons/user.png" width="16" height="16" hspace="10"/>
+                <h:form>
+                #{authenticationManagedBean.userName}
+                </h:form>
+            </div>
         </div>
         <div>
             <div id="sidebar">

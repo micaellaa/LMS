@@ -16,7 +16,7 @@
         <div id="top">
             <img src="./assets/lmslogo.png" width="30" height="30" hspace="30"/>
             <div id="lmsLogo">Library <br /> Management <br /> System</div>
-            <img src="./assets/orangebluegradientstrip.jpg" width="2" height="30" hspace="30"/>
+            <img src="./assets/orangestrip.jpg" width="2" height="30" hspace="30"/>
             <div id="navigationChoicesContainer"> 
                 <div id="navigationChoices">
                     <a href="index.xhtml">Home</a>
@@ -25,7 +25,17 @@
                     <a href="secret/manageLendAndReturns.xhtml">Manage Lend and Returns</a>
                 </div>
             </div>
-            <div id="navigationUser">#{authenticationManagedBean.userName}</div>
+            <div id="navigationUser">
+                
+                <div class="dropdown">
+                    <img src="./assets/icons/user.png" width="16" height="16" hspace="10"/>
+                #{authenticationManagedBean.userName}
+                    <div class="dropdown-content">
+                        <a href="login.xhtml">Log out</a>
+                        <a href="https://academy.hubspot.com/">Academy</a>
+                        <a href="https://www.youtube.com/user/hubspot">YouTube</a>
+                    </div>
+                </div></div>
         </div>
         <div>
             <div id="left">
