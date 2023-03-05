@@ -47,7 +47,6 @@ public class LendAndReturn implements Serializable {
     private Date returnDate;
     
     @Column(nullable = false, precision = 11, scale = 2)
-    @NotNull
     @DecimalMin("0.00")
     @Digits(integer = 9, fraction = 2)
     private BigDecimal finalAmount;
@@ -55,10 +54,9 @@ public class LendAndReturn implements Serializable {
     public LendAndReturn() {
     }
     
-    public LendAndReturn(Date lendDate, Date returnDate, BigDecimal finalAmount) {
+    public LendAndReturn(Date lendDate, Date returnDate) {
         this.lendDate = lendDate;
         this.returnDate = returnDate;
-        this.finalAmount = finalAmount;
     }
 
     public Long getLendId() {

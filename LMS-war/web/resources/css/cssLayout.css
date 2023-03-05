@@ -282,3 +282,38 @@
     background-color: #00A4BD;
 }
 
+.bookTitle {
+		font-size: 1.5rem;
+		color: var(--c-void);
+		line-height: 1.25;
+		& + * {
+			margin-top: 1rem;
+		}
+	}
+        
+.bookInfo {
+		color: var(--c-charcoal);
+		& + * {
+			margin-top: 1.25rem;
+		}
+	}
+        
+	.lendButton {
+		font: inherit;
+		line-height: 1;
+		background-color: white;
+		border: 2px solid black;
+		color: var(--c-indigo);
+		padding: 0.5em 1em;
+		border-radius: 6px;
+		font-weight: 500;
+		display: inline-flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		&:hover,
+		&:focus {
+			background-color: black;
+			color: white;
+		}
+	}

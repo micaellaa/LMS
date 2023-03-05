@@ -7,6 +7,7 @@ package session;
 
 import entity.LendAndReturn;
 import exception.BookNotFoundException;
+import exception.InputDataValidationException;
 import exception.MemberNotFoundException;
 import javax.ejb.Local;
 
@@ -16,5 +17,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface LendAndReturnSessionBeanLocal {
-    LendAndReturn createNewLendAndReturn(LendAndReturn lend, Long memberId, Long bookId) throws MemberNotFoundException, BookNotFoundException;
+    LendAndReturn createNewLendAndReturn(LendAndReturn lend, String identityNo, String isbn) throws MemberNotFoundException, BookNotFoundException, InputDataValidationException;
 }

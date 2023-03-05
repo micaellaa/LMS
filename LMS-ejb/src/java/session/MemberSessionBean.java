@@ -13,8 +13,11 @@ import exception.MemberNotFoundException;
 import java.util.Set;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -48,6 +51,17 @@ public class MemberSessionBean implements MemberSessionBeanLocal {
             return member;
         } else {
             throw new MemberNotFoundException("Member ID " + memberId + " cannot be found.");
+        }
+    }
+    
+    @Override
+    public Member retrieveMemberByIdentityNo(String identityNo) throws MemberNotFoundException {
+        Query query = em.createQuery("SELECT m FROM Member m WHERE m.identityNo = :inIdentityNo");
+        query.setParameter("inIdentityNo", identityNo);
+        try {
+            return (Member) query.getSingleResult();
+        } catch (NoResultException | NonUniqueResultException ex) {
+            throw new MemberNotFoundException("Member with identity number " + identityNo + " does not exist!");
         }
     }
     

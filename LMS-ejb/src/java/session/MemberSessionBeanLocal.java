@@ -19,6 +19,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface MemberSessionBeanLocal {
-    public Member retrieveMemberByMemberId(Long memberId) throws MemberNotFoundException, BookNotFoundException ;
+    public Member retrieveMemberByMemberId(Long memberId) throws MemberNotFoundException;
+    public Member retrieveMemberByIdentityNo(String identityNo) throws MemberNotFoundException;
     public Member createNewMember(Member member) throws MemberExistsException, UnknownPersistenceException, InputDataValidationException;
 }
