@@ -14,14 +14,13 @@ import exception.MemberNotFoundException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.validation.ConstraintViolation;
@@ -35,6 +34,10 @@ import javax.validation.ValidatorFactory;
  */
 @Stateless
 public class LendAndReturnSessionBean implements LendAndReturnSessionBeanLocal {
+    
+    private final long msInADay = 86400000;
+    private final long msIn2Weeks = 1209600000;
+    private final long finePerDay = (long) 0.5;
     
     @PersistenceContext(unitName = "LMS-ejbPU")
     private EntityManager em;
@@ -62,8 +65,26 @@ public class LendAndReturnSessionBean implements LendAndReturnSessionBeanLocal {
     
     @Override
     public LendAndReturn retrieveLendAndReturnById(Long id) {
+        System.out.println("retrieveLendAndReturnById: " + id);
         LendAndReturn lendAndReturn = em.find(LendAndReturn.class, id);
         return lendAndReturn;
+    }
+
+    @Override
+    public BigDecimal retrieveFineAmountById(Long lendId) {
+        LendAndReturn lendAndReturn = this.retrieveLendAndReturnById(lendId);
+        Date lendDate = lendAndReturn.getLendDate();
+        
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+            
+        long finableMs = Math.abs(today.getTime().getTime() - lendDate.getTime()) - msIn2Weeks;
+        if (finableMs > 0) {
+            long fineAmount = finableMs / msInADay * finePerDay;
+            return new BigDecimal(fineAmount);
+        }
+      
+        return BigDecimal.ZERO;
     }
 
     @Override
@@ -108,8 +129,16 @@ public class LendAndReturnSessionBean implements LendAndReturnSessionBeanLocal {
             returnOnLoan.setLendDate(null);
             returnOnLoan.setReturnDate(today.getTime()); 
             returnOnLoan.setFinalAmount(BigDecimal.valueOf(0));
+            returnOnLoan.setIsActive(false);
             
-            return createNewLendAndReturn(returnOnLoan, loan.getMember().getIdentityNo(), loan.getBook().getIsbn());
+            returnOnLoan = createNewLendAndReturn(returnOnLoan, loan.getMember().getIdentityNo(), loan.getBook().getIsbn());
+            
+            if (returnOnLoan != null) {
+                // 'deactivate' the corresponding loan to this return
+                loan.setIsActive(false);
+            }
+            
+            return returnOnLoan;
         } catch (MemberNotFoundException ex) {
             throw new MemberNotFoundException("Unable to record new lend or return as the member record cannot be found.");
         } catch (BookNotFoundException ex) {
@@ -120,19 +149,18 @@ public class LendAndReturnSessionBean implements LendAndReturnSessionBeanLocal {
     public List<LendAndReturn> getActiveLoans() {
         Query query = em.createQuery("SELECT l FROM LendAndReturn l");
         List<LendAndReturn> allLendAndReturns = query.getResultList();
-        /*List<LendAndReturn> activeLoans = new ArrayList();
+        List<LendAndReturn> activeLoans = new ArrayList();
         
         Iterator<LendAndReturn> iter = allLendAndReturns.iterator();
         
         while (iter.hasNext()) {
             LendAndReturn curr = iter.next();
-            if (curr.notReturned()) {
+            if (curr.getIsActive()) {
                 activeLoans.add(curr);
             }
         }
         
-        return activeLoans;*/
-        return allLendAndReturns;
+        return activeLoans;
     }
     
     private String prepareInputDataValidationErrorsMessage(Set<ConstraintViolation<LendAndReturn>> constraintViolations) {

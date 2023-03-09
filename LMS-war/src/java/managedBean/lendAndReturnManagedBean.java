@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import session.BookSessionBeanLocal;
@@ -40,10 +41,16 @@ public class lendAndReturnManagedBean {
     private String identityNo;
     private Book book;
     private String isbn;
-    //private Date lendDate;
-    //private Date returnDate;
+    
+    private List<LendAndReturn> activeLoans;
+    
+    private Long lendId;
+    
+    private Long loanId;
+    private LendAndReturn selectedLendAndReturn; // redundant
     private BigDecimal finalAmount;
-    private List<LendAndReturn> lends;
+    
+    private String retrievedFineAmount;
 
     /**
      * Creates a new instance of lendAndReturnManagedBean
@@ -53,7 +60,7 @@ public class lendAndReturnManagedBean {
     
     @PostConstruct
     public void init() {
-        setLends(lendAndReturnSessionLocal.getActiveLoans());
+        setActiveLoans(lendAndReturnSessionLocal.getActiveLoans());
     }
     
     public void createNewLend(ActionEvent evt) {
@@ -66,6 +73,7 @@ public class lendAndReturnManagedBean {
         lend.setFinalAmount(finalAmount);
         
         lend.setFinalAmount(BigDecimal.valueOf(0));
+        lend.setIsActive(true);
         
         try {
             lendAndReturnSessionLocal.createNewLendAndReturn(lend, identityNo, isbn);
@@ -88,6 +96,7 @@ public class lendAndReturnManagedBean {
         lend.setFinalAmount(finalAmount);
         
         lend.setFinalAmount(BigDecimal.valueOf(0));
+        lend.setIsActive(true);
         
         try {
             lendAndReturnSessionLocal.createNewLendAndReturn(lend, identityNo, isbn);
@@ -114,6 +123,34 @@ public class lendAndReturnManagedBean {
         //context.addMessage(null, new FacesMessage("Success", "Successfully deleted customer"));
         init();
     } 
+    
+    public void setFineAmountForId() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+        String loanIdStr = params.get("loanId");
+        Long loanId = Long.parseLong(loanIdStr);
+        System.out.println("setFineAmountForId: " + loanId);
+        try {
+            this.retrievedFineAmount = lendAndReturnSessionLocal.retrieveFineAmountById(loanId).toString();
+        } catch (Exception e) {
+            //show with an error icon context.addMessage(null, new
+            //FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to delete customer"));
+        }
+        //context.addMessage(null, new FacesMessage("Success", "Successfully deleted customer"));
+        init();
+    }
+    
+    public void loadSelectedLendAndReturn() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            this.selectedLendAndReturn
+                    = lendAndReturnSessionLocal.retrieveLendAndReturnById(loanId);
+            lendId = this.selectedLendAndReturn.getLendId();
+            finalAmount = this.selectedLendAndReturn.getFinalAmount();
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load customer"));
+        }
+    }
     
     /*
     public void createNewLendAndReturn(ActionEvent evt) {
@@ -157,6 +194,30 @@ public class lendAndReturnManagedBean {
     }
     */
 
+    public Long getLendId() {
+        return lendId;
+    }
+
+    public void setLendId(Long lendId) {
+        this.lendId = lendId;
+    }
+
+    public Long getLoanId() {
+        return loanId;
+    }
+
+    public void setLoanId(Long loanId) {
+        this.loanId = loanId;
+    }
+
+    public LendAndReturn getSelectedLendAndReturn() {
+        return selectedLendAndReturn;
+    }
+
+    public void setSelectedLendAndReturn(LendAndReturn selectedLendAndReturn) {
+        this.selectedLendAndReturn = selectedLendAndReturn;
+    }
+
     public LendAndReturnSessionBeanLocal getLendAndReturnSessionLocal() {
         return lendAndReturnSessionLocal;
     }
@@ -165,12 +226,12 @@ public class lendAndReturnManagedBean {
         this.lendAndReturnSessionLocal = lendAndReturnSessionLocal;
     }
 
-    public List<LendAndReturn> getLends() {
-        return lends;
+    public List<LendAndReturn> getActiveLoans() {
+        return activeLoans;
     }
 
-    public void setLends(List<LendAndReturn> lends) {
-        this.lends = lends;
+    public void setActiveLoans(List<LendAndReturn> activeLoans) {
+        this.activeLoans = activeLoans;
     }
 
     public String getIdentityNo() {
@@ -227,13 +288,22 @@ public class lendAndReturnManagedBean {
     }
     */
 
-    public BigDecimal getFinalAmount() {
-        return finalAmount; //issues
+    public String getFinalAmount() {
+        return finalAmount.toString(); //issues
     }
 
     public void setFinalAmount(BigDecimal finalAmount) {
         this.finalAmount = finalAmount;
     }
+
+    public String getRetrievedFineAmount() {
+        return retrievedFineAmount;
+    }
+
+    public void setRetrievedFineAmount(String retrievedFineAmount) {
+        this.retrievedFineAmount = retrievedFineAmount;
+    }
+    
     
     
 }

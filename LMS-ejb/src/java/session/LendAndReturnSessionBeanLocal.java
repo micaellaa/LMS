@@ -9,6 +9,7 @@ import entity.LendAndReturn;
 import exception.BookNotFoundException;
 import exception.InputDataValidationException;
 import exception.MemberNotFoundException;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -25,4 +26,6 @@ public interface LendAndReturnSessionBeanLocal {
     public LendAndReturn createNewReturnOnLoan(Long loanId) throws MemberNotFoundException, BookNotFoundException, InputDataValidationException;
 
     public List<LendAndReturn> getActiveLoans();
+    
+    public BigDecimal retrieveFineAmountById(Long lendId);
 }

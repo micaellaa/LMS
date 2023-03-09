@@ -50,6 +50,9 @@ public class LendAndReturn implements Serializable {
     @DecimalMin("0.00")
     @Digits(integer = 9, fraction = 2)
     private BigDecimal finalAmount;
+    
+    @Column
+    private boolean isActive;
 
     public LendAndReturn() {
     }
@@ -105,6 +108,14 @@ public class LendAndReturn implements Serializable {
 
     public void setFinalAmount(BigDecimal finalAmount) {
         this.finalAmount = finalAmount;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override
