@@ -12,9 +12,13 @@ import exception.InputDataValidationException;
 import exception.MemberNotFoundException;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import session.BookSessionBeanLocal;
 import session.LendAndReturnSessionBeanLocal;
@@ -39,11 +43,17 @@ public class lendAndReturnManagedBean {
     //private Date lendDate;
     //private Date returnDate;
     private BigDecimal finalAmount;
+    private List<LendAndReturn> lends;
 
     /**
      * Creates a new instance of lendAndReturnManagedBean
      */
     public lendAndReturnManagedBean() {
+    }
+    
+    @PostConstruct
+    public void init() {
+        setLends(lendAndReturnSessionLocal.getActiveLoans());
     }
     
     public void createNewLend(ActionEvent evt) {
@@ -89,6 +99,21 @@ public class lendAndReturnManagedBean {
             System.out.println(ex.getMessage());
         }
     }
+    
+    public void createNewReturnForLoan() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+        String loanIdStr = params.get("loanId");
+        Long loanId = Long.parseLong(loanIdStr);
+        try {
+            lendAndReturnSessionLocal.createNewReturnOnLoan(loanId);
+        } catch (Exception e) {
+            //show with an error icon context.addMessage(null, new
+            //FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to delete customer"));
+        }
+        //context.addMessage(null, new FacesMessage("Success", "Successfully deleted customer"));
+        init();
+    } 
     
     /*
     public void createNewLendAndReturn(ActionEvent evt) {
@@ -138,6 +163,14 @@ public class lendAndReturnManagedBean {
 
     public void setLendAndReturnSessionLocal(LendAndReturnSessionBeanLocal lendAndReturnSessionLocal) {
         this.lendAndReturnSessionLocal = lendAndReturnSessionLocal;
+    }
+
+    public List<LendAndReturn> getLends() {
+        return lends;
+    }
+
+    public void setLends(List<LendAndReturn> lends) {
+        this.lends = lends;
     }
 
     public String getIdentityNo() {

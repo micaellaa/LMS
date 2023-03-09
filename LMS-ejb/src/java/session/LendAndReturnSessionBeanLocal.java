@@ -9,6 +9,7 @@ import entity.LendAndReturn;
 import exception.BookNotFoundException;
 import exception.InputDataValidationException;
 import exception.MemberNotFoundException;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -17,5 +18,11 @@ import javax.ejb.Local;
  */
 @Local
 public interface LendAndReturnSessionBeanLocal {
+    public LendAndReturn retrieveLendAndReturnById(Long id);
+
     LendAndReturn createNewLendAndReturn(LendAndReturn lend, String identityNo, String isbn) throws MemberNotFoundException, BookNotFoundException, InputDataValidationException;
+
+    public LendAndReturn createNewReturnOnLoan(Long loanId) throws MemberNotFoundException, BookNotFoundException, InputDataValidationException;
+
+    public List<LendAndReturn> getActiveLoans();
 }

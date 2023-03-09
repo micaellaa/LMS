@@ -282,17 +282,17 @@
     background-color: #00A4BD;
 }
 
-.bookTitle {
+#bookTitle {
 		font-size: 1.5rem;
-		color: var(--c-void);
+		color: black;
 		line-height: 1.25;
 		& + * {
 			margin-top: 1rem;
 		}
 	}
         
-.bookInfo {
-		color: var(--c-charcoal);
+#bookInfo {
+		color: black;
 		& + * {
 			margin-top: 1.25rem;
 		}
@@ -303,7 +303,7 @@
 		line-height: 1;
 		background-color: white;
 		border: 2px solid black;
-		color: var(--c-indigo);
+		color: black;
 		padding: 0.5em 1em;
 		border-radius: 6px;
 		font-weight: 500;
@@ -317,3 +317,11 @@
 			color: white;
 		}
 	}
+        
+#loanCard {
+    background: white;
+    align-self: center;
+    padding: 50px 20px 50px 20px;
+    width: 60%;
+    border-radius: 15px;
+}
