@@ -53,7 +53,10 @@ public class LendAndReturn implements Serializable {
     
     @Column
     private boolean isActive;
-
+    
+    @Column
+    private boolean isPaid = false;
+    
     public LendAndReturn() {
     }
     
@@ -116,6 +119,14 @@ public class LendAndReturn implements Serializable {
 
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
+    }
+
+    public boolean isIsPaid() {
+        return isPaid;
+    }
+
+    public void setIsPaid(boolean isPaid) {
+        this.isPaid = isPaid;
     }
 
     @Override

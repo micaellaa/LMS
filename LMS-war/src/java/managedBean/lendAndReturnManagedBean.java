@@ -8,6 +8,8 @@ package managedBean;
 import entity.Book;
 import entity.LendAndReturn;
 import exception.BookNotFoundException;
+import exception.BookOnActiveLoanException;
+import exception.FineNotPaidException;
 import exception.InputDataValidationException;
 import exception.MemberNotFoundException;
 import java.math.BigDecimal;
@@ -75,15 +77,25 @@ public class lendAndReturnManagedBean {
         lend.setFinalAmount(BigDecimal.valueOf(0));
         lend.setIsActive(true);
         
+        FacesContext context = FacesContext.getCurrentInstance();
+        
         try {
-            lendAndReturnSessionLocal.createNewLendAndReturn(lend, identityNo, isbn);
+            lendAndReturnSessionLocal.createNewLend(lend, identityNo, isbn);
         } catch (MemberNotFoundException ex) {
-            System.out.println(ex.getMessage());
+            context.addMessage("lendForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Member ID cannot be found"));
+            return;
         } catch (BookNotFoundException ex) {
-            System.out.println(ex.getMessage());
+            context.addMessage("lendForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Book ISBN cannot be found"));
+            return;
+        } catch (BookOnActiveLoanException ex) {
+            context.addMessage("lendForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Book is currently on loan"));
+            return;
         } catch (InputDataValidationException ex) {
             System.out.println(ex.getMessage());
+            return;
         }
+        context.addMessage("lendForm", new FacesMessage("Success", "Successfully updated customer"));
+        init();
     }
     
     public void createNewReturn(ActionEvent evt) {
@@ -116,27 +128,31 @@ public class lendAndReturnManagedBean {
         Long loanId = Long.parseLong(loanIdStr);
         try {
             lendAndReturnSessionLocal.createNewReturnOnLoan(loanId);
+        } catch (FineNotPaidException e) {
+            context.addMessage("returnAttempt", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Fine is not paid"));
+            return;
         } catch (Exception e) {
-            //show with an error icon context.addMessage(null, new
-            //FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to delete customer"));
+            context.addMessage("returnAttempt", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to return book"));
+            return;
         }
-        //context.addMessage(null, new FacesMessage("Success", "Successfully deleted customer"));
+        context.addMessage("returnAttempt", new FacesMessage("Success", "Successfully returned book"));
         init();
     } 
     
-    public void setFineAmountForId() {
+    public void payLoanForId() {
         FacesContext context = FacesContext.getCurrentInstance();
         Map<String, String> params = context.getExternalContext().getRequestParameterMap();
         String loanIdStr = params.get("loanId");
         Long loanId = Long.parseLong(loanIdStr);
-        System.out.println("setFineAmountForId: " + loanId);
+        System.out.println("payLoanForId: " + loanId);
         try {
-            this.retrievedFineAmount = lendAndReturnSessionLocal.retrieveFineAmountById(loanId).toString();
+            lendAndReturnSessionLocal.payLoan(loanId);
         } catch (Exception e) {
             //show with an error icon context.addMessage(null, new
             //FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to delete customer"));
+            return;
         }
-        //context.addMessage(null, new FacesMessage("Success", "Successfully deleted customer"));
+        context.addMessage("paymentAttempt", new FacesMessage("Success", "Successfully paid fine"));
         init();
     }
     
@@ -148,7 +164,8 @@ public class lendAndReturnManagedBean {
             lendId = this.selectedLendAndReturn.getLendId();
             finalAmount = this.selectedLendAndReturn.getFinalAmount();
         } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load customer"));
+            //context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "blah blah"));
+            return;
         }
     }
     

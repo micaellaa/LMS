@@ -27,6 +27,8 @@ public interface BookSessionBeanLocal {
     Book retrieveBookByBookId(Long bookId) throws BookNotFoundException;
 
     Book retrieveBookByIsbn(String isbn) throws BookNotFoundException;
+    
+    Boolean isBookOnActiveLoan(Book book);
 
     // void updateBook(Book book) throws BookNotFoundException, UpdateBookException, InputDataValidationException;
     

@@ -6,10 +6,13 @@
 package session;
 
 import entity.Book;
+import entity.LendAndReturn;
 import exception.BookExistsException;
 import exception.BookNotFoundException;
 import exception.InputDataValidationException;
 import exception.UnknownPersistenceException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import javax.ejb.Stateless;
@@ -82,6 +85,20 @@ public class BookSessionBean implements BookSessionBeanLocal {
         } else {
             throw new BookNotFoundException("Book ID " + bookId + " does not exist!");
         }
+    }
+    
+    @Override
+    public Boolean isBookOnActiveLoan(Book book) {
+        ArrayList<LendAndReturn> lendAndReturns = book.getLendAndReturns();
+        Iterator<LendAndReturn> iter = lendAndReturns.iterator();
+        
+        while (iter.hasNext()) {
+            LendAndReturn curr = iter.next();
+            if (curr.getLendDate() != null && curr.getIsActive()) {// if a lendAndReturn is an active loan
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

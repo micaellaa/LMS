@@ -15,6 +15,22 @@
     margin: 0px 0px 0px 0px;
 }
 
+.loginFormInput {
+    background: none;
+    border: 2px solid #ddd;
+    min-height: 30px;
+    min-width: 300px;
+    border-radius: 8px;
+}
+
+.submitButton {
+    background: #c2dfef;
+    
+    min-height: 30px;
+    min-width: 300px;
+    border-radius: 8px;
+}
+
 #navigationChoicesContainer {
     min-width: 70%;
     horizontal-align: middle;
@@ -95,31 +111,35 @@
 }
 
 #content {
-    flex-direction: row;
-    display: flex;
+    /*flex-direction: row;
+   display: flex;*/
     position: relative;
+    float:left;
     justify-content: space-evenly;
-    padding: 40px 5px 5px 5px;
-    min-height: 50%;
-    background-color: rgba(0, 0, 0, 0);
+    padding: 0px 0px 0px 0px;
+    height: 70%;
+    
+
 }
 
 .center_content {
     position: relative;
     background-color: rgba(0, 0, 0, 0);
-    padding: 5px;
+    padding: 0px 5px 5px 20px;
+    background-color:#e38755;
 }
 
 .left_content {
     background-color: rgba(0, 0, 0, 0);
     padding: 5px;
-    margin-left: 170px;
+    padding: 0px 5px 5px 20px;
 }
 
 .right_content {
     background-color: rgba(0, 0, 0, 0);
-    padding: 5px;
+    padding: 20px 5px 5px 20px;
     margin: 0px 170px 0px 170px;
+    background-color:#045491;
 }
 
 #inputLabel {
@@ -197,14 +217,22 @@
     background: #E1EFF3;
     padding: 8px;
     border-radius: 16px;
+    
 }
 
 #formContainer {
+    display: flex;
+    flex-direction: row;
     background: white;
     align-self: center;
-    padding: 50px 20px 50px 20px;
-    width: 60%;
+    justify-content: center;
+    padding: 50px 20px 20px 20px;
+    margin: 0px 20px 0px 20px;
     border-radius: 15px;
+    position: absolute;
+    min-width: 900px;
+    
+
 }
 
 #inputText {
