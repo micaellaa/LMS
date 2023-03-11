@@ -88,13 +88,13 @@ public class lendAndReturnManagedBean {
             context.addMessage("lendForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Book ISBN cannot be found"));
             return;
         } catch (BookOnActiveLoanException ex) {
-            context.addMessage("lendForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Book is currently on loan"));
+            context.addMessage("lendForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Book: " + lend.getBook().getTitle() + " is currently on loan"));
             return;
         } catch (InputDataValidationException ex) {
             System.out.println(ex.getMessage());
             return;
         }
-        context.addMessage("lendForm", new FacesMessage("Success", "Successfully updated customer"));
+        context.addMessage("lendForm", new FacesMessage("Success", "Successfully lent " + lend.getBook().getTitle()));
         init();
     }
     

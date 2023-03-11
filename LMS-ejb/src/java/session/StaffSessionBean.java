@@ -102,6 +102,7 @@ public class StaffSessionBean implements StaffSessionBeanLocal {
     @Override
     public Staff staffLogin(String username, String password) throws StaffNotFoundException, InvalidLoginCredentialException {
         try {
+            System.out.println("staffLogin(): " + username);
             Staff staff = retrieveStaffByUsername(username);
 
             if (staff.getPassword().equals(password)) {

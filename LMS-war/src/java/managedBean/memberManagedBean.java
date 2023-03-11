@@ -7,10 +7,12 @@ package managedBean;
 
 import entity.Member;
 import exception.MemberExistsException;
-import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import session.MemberSessionBeanLocal;
 
@@ -33,10 +35,36 @@ public class memberManagedBean {
     private String phone;
     private String address;
     
+    private List<Member> members;
+    private String searchType = "NAME";
+    private String searchString;
+    
     /**
      * Creates a new instance of memberManagedBean
      */
     public memberManagedBean() {
+    }
+    
+    public void init() {
+        /*
+        if (searchString == null || searchString.equals("")) {
+            members = memberSessionLocal.searchMembers(null);
+        } else {
+            switch (searchType) {
+                case "NAME":
+                    members = memberSessionLocal.searchMembers(searchString);
+                    break;
+                case "IDENTITYNO": {
+                    members = memberSessionLocal.retrieveMembersByIdentityNo(searchString);
+                    break;
+                }
+                case "CONTACTNO": {
+                    members = memberSessionLocal.retrieveMembersByContact(searchString);
+                    break;
+                }
+            }
+        }
+        */
     }
     
     public void createNewMember(ActionEvent evt) {
@@ -50,13 +78,19 @@ public class memberManagedBean {
         member.setPhone(phone);
         member.setAddress(address);
         
+        FacesContext context = FacesContext.getCurrentInstance();
+        
         try {
             memberSessionLocal.createNewMember(member);
         } catch(MemberExistsException ex) {
-            //
+            context.addMessage("memberForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Member identity number already exists"));
+            return;
         } catch(Exception ex) {
-            //
+            context.addMessage("memberForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to register member"));
+            return;
         } 
+        init();
+        context.addMessage("memberForm", new FacesMessage("Success", "Successfully registered member " + member.getFirstName()));
     } //end createNewMember
 
     public MemberSessionBeanLocal getMemberSessionLocal() {

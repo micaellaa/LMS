@@ -31,6 +31,8 @@
     border-radius: 8px;
 }
 
+
+
 #navigationChoicesContainer {
     min-width: 70%;
     horizontal-align: middle;
@@ -49,8 +51,21 @@
 }
 
 #navigationUser {
-    min-width: 20%;
+    display:flex;
+    width: 160px;
     align-content: center;
+    justify-content: space-around;
+    height:30px;
+}
+
+#navigationUser:hover {
+    display:flex;
+    width: 160px;
+    align-content: center;
+    justify-content: space-around;
+    background-color: #c2dfef;
+    height:30px;
+    border-radius: 15px;
 }
 
 #verticalLine{
@@ -118,8 +133,6 @@
     justify-content: space-evenly;
     padding: 0px 0px 0px 0px;
     height: 70%;
-    
-
 }
 
 .center_content {
@@ -150,6 +163,14 @@
     padding: 8px 0px 0px 0px;
 }
 
+#loginInputLabel {
+    color: white; 
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 8px 0px 0px 0px;
+}
+
 #lmsLogo {
     color: #37314a; 
     font-family: Arial, Monaco, Gill Sans, Verdana, Trebucha MS, Tahoma;
@@ -158,10 +179,21 @@
     text-decoration: none;
 }
 
+#loginLmsLogo {
+    color: white; 
+    font-family: Arial, Monaco, Gill Sans, Verdana, Trebucha MS, Tahoma;
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
 #navigationChoices a:link, #navigationChoices a:visited  {
     color: #ABABC3;
     font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 15px;
     text-decoration: bold;
 }
@@ -169,7 +201,7 @@
 #navigationChoices a:link:hover, #navigationChoices a:visited:hover  {
     color: #37314a; 
     font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 15px;
     text-decoration : none;
 }
@@ -177,7 +209,7 @@
 #navigationChoices a:link:after, #navigationChoices a:visited:after {
     color: #ABABC3;
     font-family: Gill Sans, Verdana, Trebucha MS, Tahoma, Arial;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 15px;
     text-decoration: bold;
     content: '';
@@ -230,9 +262,8 @@
     margin: 0px 20px 0px 20px;
     border-radius: 15px;
     position: absolute;
-    min-width: 900px;
+    min-width: 980px;
     
-
 }
 
 #inputText {
@@ -277,25 +308,36 @@
     font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
     font-weight: 400;
     font-size: 16px;
-    text-decoration : bold;
     padding: 8px;
 }
 
 .dropdown {
     display: inline-block;
+    width: 160px;
     position: relative;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .dropdown-content {
     display: none;
+    width: 200px;
     position: absolute;
     width: 100%;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 400;
+    font-size: 14px;
+    box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.1);
+    margin-top: 5px;
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .dropdown-content a {
@@ -303,53 +345,135 @@
     color: #000000;
     padding: 5px;
     text-decoration: none;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .dropdown-content a:hover {
     color: #FFFFFF;
-    background-color: #00A4BD;
+    background-color: #c2dfef;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 #bookTitle {
-		font-size: 1.5rem;
-		color: black;
-		line-height: 1.25;
-		& + * {
-			margin-top: 1rem;
-		}
-	}
-        
+    color: black;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 500;
+    font-size: 18px;
+}
+
 #bookInfo {
-		color: black;
-		& + * {
-			margin-top: 1.25rem;
-		}
-	}
+    display: flex;
+}
         
-	.lendButton {
-		font: inherit;
-		line-height: 1;
-		background-color: white;
-		border: 2px solid black;
-		color: black;
-		padding: 0.5em 1em;
-		border-radius: 6px;
-		font-weight: 500;
-		display: inline-flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 0.5rem;
-		&:hover,
-		&:focus {
-			background-color: black;
-			color: white;
-		}
-	}
+#bookInfo1 {
+    color: black;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 200;
+    font-size: 15px;
+    font-style: italic;
+}
+
+#bookInfo2 {
+    color:#AFAFAF;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 200;
+    font-size: 10px;
+}
+        
         
 #loanCard {
     background: white;
     align-self: center;
-    padding: 50px 20px 50px 20px;
-    width: 60%;
+    padding: 20px 20px 50px 20px;
+    width: 250px;
     border-radius: 15px;
 }
+
+.custom-field.one input {
+  background: none;
+  border: 2px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.custom-field.one input + .placeholder {
+  left: 8px;
+  padding: 0 5px;
+}
+
+.custom-field.one input.dirty,
+.custom-field.one input:not(:placeholder-shown),
+.custom-field.one input:focus {
+  border-color: #222;
+  transition-delay: 0.1s
+}
+
+.custom-field.one input.dirty + .placeholder,
+.custom-field.one input:not(:placeholder-shown) + .placeholder,
+.custom-field.one input:focus + .placeholder {
+  top: 0;
+  font-size: 10px;
+  color: #222;
+  background: #fff;
+  width: auto
+}
+
+#contentContainer {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+#loginContainer {
+    position:relative;
+}
+
+.loginInput {
+    background-color: rgba(255, 255, 255, 0.9);
+    min-height: 40px;
+    min-width: 400px;
+    border-radius: 40px;
+    color:#003366;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 300;
+    font-size: 22px;
+    padding: 0px 20px 0px 20px;
+}
+
+.loginButton {
+    background: #c2dfef;
+    min-height: 40px;
+    min-width: 440px; /*change this according to loginInput padding size*/
+    border-radius: 40px;
+    /*font*/
+    color: white; 
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 8px 0px 0px 0px;
+}
+
+.imgCenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0px 20px 0px 20px;
+  min-width: 980px;
+}
+

@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/secret/manageMembers.xhtml</file>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/secret/manageLendAndReturns.xhtml</file>
+            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/login.xhtml</file>
+            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/secret/index.xhtml</file>
+            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/src/java/managedBean/AuthenticationManagedBean.java</file>
+            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/src/java/managedBean/lendAndReturnManagedBean.java</file>
         </group>
     </open-files>
 </project-private>

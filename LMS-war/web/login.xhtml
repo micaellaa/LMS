@@ -1,17 +1,37 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:head > 
+        <h:outputStylesheet name="css/cssLayout.css"/>
         <title>Login</title>
+        <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="./assets/favicon.ico" type="image/x-icon"/> 
     </h:head>
-    <h:body>
-        <h:form>
-            Username: <h:inputText
-                value="#{authenticationManagedBean.userName}"/><br/> Password: <h:inputSecret
-                value="#{authenticationManagedBean.password}"/><br/>
-            <!-- using action instead of actionListener -->
-            <h:commandButton value="Login" action="#{authenticationManagedBean.login}"/>
-        </h:form>
+    <h:body 
+        style="background-image: url(./assets/loginBackground.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;">
+        <div id ="contentContainer">
+            <div id="loginContainer">
+                <img src="./assets/lmslogo.png" width="80" height="80" hspace="30" vspace="15" class="imgCenter"/>
+                <div id="loginLmsLogo">LMS Management</div>
+                <h:form>
+                    <div id="loginInputLabel"> Username </div><br/>
+                    <h:inputText
+                        value="#{authenticationManagedBean.userName}"
+                        styleClass="loginInput"/><br/>
+                    <div id="loginInputLabel"> Password </div><br/>
+                    <h:inputSecret
+                        value="#{authenticationManagedBean.password}"
+                        styleClass="loginInput"/><br/>
+                    <br/><br/>
+                    <h:commandButton value="Login" action="#{authenticationManagedBean.login}" styleClass="loginButton"/>
+                </h:form>
+            </div>
+        
+        </div>
     </h:body>
 </html>
