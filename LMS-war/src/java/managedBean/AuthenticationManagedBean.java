@@ -79,9 +79,6 @@ public class AuthenticationManagedBean implements Serializable {
     }
 
     public String getUserName() {
-        if (this.userName == null) {
-            return "Log In";
-        } 
         return userName;
     }
 

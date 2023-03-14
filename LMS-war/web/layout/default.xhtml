@@ -11,7 +11,9 @@
         <title><ui:insert name="title">Library Management System</ui:insert></title>
     </h:head>
 
-    <h:body>
+    <h:body style="background-image: url(../assets/homeBackground.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;">
 
         <div id="top">
             <img src="../assets/lmslogo.png" width="30" height="30" hspace="30"/>
@@ -38,20 +40,20 @@
             </div>
         </div>
         <div>
-            <div id="left">
-                <ui:insert name="left">Left</ui:insert>
+            <div id="left" >
+                <ui:insert name="left"></ui:insert>
             </div>
             <div>
                 <div id="right">
-                    <ui:insert name="right">Right</ui:insert>
+                    <ui:insert name="right"></ui:insert>
                 </div>
                 <div id="content" class="right_content">
-                    <ui:insert name="content">Content</ui:insert>
+                    <ui:insert name="content"></ui:insert>
                 </div>
             </div>
         </div>
         <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
+            <ui:insert name="bottom"></ui:insert>
         </div>
 
     </h:body>
