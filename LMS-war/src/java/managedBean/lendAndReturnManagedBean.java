@@ -82,15 +82,23 @@ public class lendAndReturnManagedBean {
         try {
             lendAndReturnSessionLocal.createNewLend(lend, identityNo, isbn);
         } catch (MemberNotFoundException ex) {
+            this.isbn = null;
+            this.identityNo = null;
             context.addMessage("lendForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Member ID cannot be found"));
             return;
         } catch (BookNotFoundException ex) {
+            this.isbn = null;
+            this.identityNo = null;
             context.addMessage("lendForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Book ISBN cannot be found"));
             return;
         } catch (BookOnActiveLoanException ex) {
+            this.isbn = null;
+            this.identityNo = null;
             context.addMessage("lendForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Book: " + lend.getBook().getTitle() + " is currently on loan"));
             return;
         } catch (InputDataValidationException ex) {
+            this.isbn = null;
+            this.identityNo = null;
             System.out.println(ex.getMessage());
             return;
         }
@@ -138,6 +146,15 @@ public class lendAndReturnManagedBean {
         context.addMessage("returnAttempt", new FacesMessage("Success", "Successfully returned book"));
         init();
     } 
+    
+    public void retrieveFineAmountForId() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+        String loanIdStr = params.get("loanId");
+        Long loanId = Long.parseLong(loanIdStr);
+        System.out.println("retrieveFineAmountForId(): " + loanId);
+        lendAndReturnSessionLocal.retrieveFineAmountById(loanId);
+    }
     
     public void payLoanForId() {
         FacesContext context = FacesContext.getCurrentInstance();

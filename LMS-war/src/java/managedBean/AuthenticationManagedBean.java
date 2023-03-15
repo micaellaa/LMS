@@ -12,6 +12,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import session.StaffSessionBeanLocal;
 
 /**
@@ -37,6 +39,7 @@ public class AuthenticationManagedBean implements Serializable {
         //...
         //simulate username/password
         Staff staff = null;
+        FacesContext context = FacesContext.getCurrentInstance();
         try {
             /*
             if (userName.equals("user1") && password.equals("password")) {
@@ -54,16 +57,17 @@ public class AuthenticationManagedBean implements Serializable {
             }
              */
             staff = staffSessionLocal.staffLogin(userName, password);
-
+            
         } catch (StaffNotFoundException ex) {
-            //
+            context.addMessage("memberForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Staff member can not be found"));
         } catch (InvalidLoginCredentialException ex) {
-            //
+            context.addMessage("memberForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Password is invalid"));
         }
         if (staff != null) {
             staffId = staff.getStaffId();
             return "/secret/index.xhtml?faces-redirect=true";
         } else {
+            //login failed
             userName = null;
             password = null;
             staffId = (long) -1;

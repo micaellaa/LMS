@@ -391,6 +391,7 @@
     padding: 20px 20px 50px 20px;
     width: 250px;
     border-radius: 15px;
+    margin: 0px 20px 0px 0px;
 }
 
 .custom-field.one input {
@@ -497,7 +498,7 @@
     padding: 8px 0px 0px 0px;
 }
 
-.lrButton {
+.lrbutton {
     background-color: #9bc0ea;
     height: 30px;
     min-width: 80px; /*change this according to loginInput padding size*/
@@ -507,7 +508,20 @@
     font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
     font-weight: 400;
     font-size: 15px;
-    padding: 8px 0px 0px 0px;
+    padding: 0px 7px 0px 7px;
+}
+
+.lrbuttonDisabled {
+    background-color:#AFAFAF;
+    height: 30px;
+    min-width: 80px; /*change this according to loginInput padding size*/
+    border-radius: 15px;
+    /*font*/
+    color: black; 
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 0px 7px 0px 7px;
 }
 
 .imgCenter {
@@ -518,17 +532,34 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  column-gap:20px;
   margin: 0px 20px 0px 20px;
-  min-width: 980px;
+  min-width: 900px;
+  row-gap: 20px;
+  grid-template-columns: repeat( auto-fit, minmax(280px, 1fr) );
 }
 
 #middle {
    display: grid;
    grid-template-columns: 270px 1fr;
-   height: 80%;
+   min-height: 75vh;
    margin-right: 20px;
    margin-bottom: 20px;
    padding: 20px 40px 0px 0px;
 }
 
+.ui-messages-info, .ui-messages-warn, .ui-messages-error, .ui-messages-fatal {
+    position:absolute;
+    float: none;
+    border: 1px solid;
+    margin: 10px 0;
+    padding: 10px 10px 20px 10px;
+}
+
+.p-messages-info, .p-messages-warn, .p-messages-error, .p-messages-fatal {
+    position:absolute;
+    float: none;
+    border: 1px solid;
+    margin: 10px 0;
+    padding: 10px 10px 20px 10px;
+}

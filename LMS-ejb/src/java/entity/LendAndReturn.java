@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -57,6 +58,8 @@ public class LendAndReturn implements Serializable {
     @Column
     private boolean isPaid = false;
     
+    
+    
     public LendAndReturn() {
     }
     
@@ -106,7 +109,49 @@ public class LendAndReturn implements Serializable {
     }
 
     public BigDecimal getFinalAmount() {
-        return finalAmount;
+        // for calculating fine amount
+        System.out.println("BigDecimal getFineAmount(): " + this.lendId);
+        long msInADay = 86400000;
+        long msIn2Weeks = 1209600000;
+        
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        System.out.println("BigDecimal getFineAmount(): finableMs = " + today.toString());
+            
+        long finableMs = Math.abs(today.getTime().getTime() - lendDate.getTime()) - msIn2Weeks;
+        System.out.println("BigDecimal getFineAmount(): finableMs = " + finableMs);
+        
+        if (finableMs > 0) {
+            long fineAmount = (long) (((float) finableMs / (float) msInADay) * 0.5);
+            this.setFinalAmount(BigDecimal.valueOf(fineAmount));
+            System.out.println("BigDecimal getFineAmount(): fineAmount = " + fineAmount);
+            System.out.println("BigDecimal getFineAmount(): this.finalAmount = " + this.finalAmount);
+            return BigDecimal.valueOf(fineAmount);
+        }
+        
+        this.setFinalAmount(BigDecimal.ZERO);
+        return BigDecimal.ZERO;
+    }
+    
+    public String getFineAmount() {
+        // for calculating fine amount
+        System.out.println("String getFineAmount(): " + this.lendId);
+        long msInADay = 86400000;
+        long msIn2Weeks = 1209600000;
+        
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+            
+        long finableMs = Math.abs(today.getTime().getTime() - lendDate.getTime()) - msIn2Weeks;
+        
+        if (finableMs > 0) {
+            long fineAmount = (long) finableMs / msInADay * (long) 0.5;
+            this.setFinalAmount(new BigDecimal(fineAmount));
+            return String.format("%.2f", fineAmount);
+        }
+        
+        this.setFinalAmount(BigDecimal.ZERO);
+        return "0";
     }
 
     public void setFinalAmount(BigDecimal finalAmount) {
