@@ -59,9 +59,9 @@ public class AuthenticationManagedBean implements Serializable {
             staff = staffSessionLocal.staffLogin(userName, password);
             
         } catch (StaffNotFoundException ex) {
-            context.addMessage("memberForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Staff member can not be found"));
+            context.addMessage("loginAttempt", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Staff member can not be found"));
         } catch (InvalidLoginCredentialException ex) {
-            context.addMessage("memberForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Password is invalid"));
+            context.addMessage("loginAttempt", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Password is invalid"));
         }
         if (staff != null) {
             staffId = staff.getStaffId();
