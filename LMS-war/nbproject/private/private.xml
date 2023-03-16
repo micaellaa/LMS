@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/login.xhtml</file>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/layout/default.xhtml</file>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/secret/index.xhtml</file>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/secret/manageMembers.xhtml</file>
+            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/resources/css/cssLayout.css</file>
             <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/secret/manageBooks.xhtml</file>
+            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/secret/returnABook.xhtml</file>
             <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/WEB-INF/web.xml</file>
             <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/layout/managementPage.xhtml</file>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/src/java/filter/AuthenticationFilter.java</file>
             <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/src/java/managedBean/memberManagedBean.java</file>
             <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/src/java/managedBean/lendAndReturnManagedBean.java</file>
         </group>

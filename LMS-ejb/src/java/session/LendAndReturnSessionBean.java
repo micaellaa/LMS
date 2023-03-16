@@ -87,9 +87,9 @@ public class LendAndReturnSessionBean implements LendAndReturnSessionBeanLocal {
             
         long finableMs = Math.abs(today.getTime().getTime() - lendDate.getTime()) - msIn2Weeks;
         if (finableMs > 0) {
-            long fineAmount = finableMs / msInADay * finePerDay;
+            long fineAmount = (long) (((float) finableMs / (float) msInADay) * 0.5);
             lendAndReturn.setFinalAmount(new BigDecimal(fineAmount));
-            return new BigDecimal(fineAmount);
+            return BigDecimal.valueOf(fineAmount);
         }
         lendAndReturn.setFinalAmount(BigDecimal.ZERO);
         //lendAndReturn.setFinalAmount(new BigDecimal((long) 420.0)); //test

@@ -52,7 +52,8 @@ public class lendAndReturnManagedBean {
     private LendAndReturn selectedLendAndReturn; // redundant
     private BigDecimal finalAmount;
     
-    private String retrievedFineAmount;
+    private Double retrievedFineAmount;
+    private Boolean hasRetrievedFineAmount = false;
 
     /**
      * Creates a new instance of lendAndReturnManagedBean
@@ -153,7 +154,10 @@ public class lendAndReturnManagedBean {
         String loanIdStr = params.get("loanId");
         Long loanId = Long.parseLong(loanIdStr);
         System.out.println("retrieveFineAmountForId(): " + loanId);
-        lendAndReturnSessionLocal.retrieveFineAmountById(loanId);
+        this.retrievedFineAmount = lendAndReturnSessionLocal.retrieveFineAmountById(loanId).doubleValue();
+        this.hasRetrievedFineAmount = true;
+        System.out.println("retrievedFineAmount: hasRetrievedFineAmount is: " + this.hasRetrievedFineAmount);
+        System.out.println("retrievedFineAmount: " + this.retrievedFineAmount);
     }
     
     public void payLoanForId() {
@@ -330,12 +334,20 @@ public class lendAndReturnManagedBean {
         this.finalAmount = finalAmount;
     }
 
-    public String getRetrievedFineAmount() {
+    public Double getRetrievedFineAmount() {
         return retrievedFineAmount;
     }
 
-    public void setRetrievedFineAmount(String retrievedFineAmount) {
+    public void setRetrievedFineAmount(Double retrievedFineAmount) {
         this.retrievedFineAmount = retrievedFineAmount;
+    }
+
+    public Boolean getHasRetrievedFineAmount() {
+        return hasRetrievedFineAmount;
+    }
+
+    public void setHasRetrievedFineAmount(Boolean hasRetrievedFineAmount) {
+        this.hasRetrievedFineAmount = hasRetrievedFineAmount;
     }
     
     

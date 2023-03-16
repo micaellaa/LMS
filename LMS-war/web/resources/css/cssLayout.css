@@ -388,7 +388,7 @@
 #loanCard {
     background: white;
     align-self: center;
-    padding: 20px 20px 50px 20px;
+    padding: 20px 20px 10px 20px;
     width: 250px;
     border-radius: 15px;
     margin: 0px 20px 0px 0px;
@@ -512,7 +512,7 @@
 }
 
 .lrbuttonDisabled {
-    background-color:#AFAFAF;
+    background-color:#d9e9c4; /*green*/
     height: 30px;
     min-width: 80px; /*change this according to loginInput padding size*/
     border-radius: 15px;
@@ -562,4 +562,22 @@
     border: 1px solid;
     margin: 10px 0;
     padding: 10px 10px 20px 10px;
+}
+
+.fineAmount {
+    color: black;
+    font-size: 14px;
+}
+
+#fineAmountText {
+    color: black;
+    font-family: Gill Sans, Verdana, Trebucha MS, Tahoma,Arial;
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    padding: 0px 5px 15px 5px;
+    justify-content: space-between;
+    align-items: flex-end;
+    float: bottom;
+    height:60px;
 }
