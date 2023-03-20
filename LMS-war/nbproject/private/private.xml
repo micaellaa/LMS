@@ -5,11 +5,7 @@
         <group>
             <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/resources/css/cssLayout.css</file>
             <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/secret/manageBooks.xhtml</file>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/secret/returnABook.xhtml</file>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/WEB-INF/web.xml</file>
             <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/web/layout/managementPage.xhtml</file>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/src/java/managedBean/memberManagedBean.java</file>
-            <file>file:/Users/micaella/NetBeansProjects/LMS/LMS-war/src/java/managedBean/lendAndReturnManagedBean.java</file>
         </group>
     </open-files>
 </project-private>
